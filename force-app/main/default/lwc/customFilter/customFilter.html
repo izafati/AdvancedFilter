@@ -1,0 +1,49 @@
+<template>
+    <div class="slds-grid slds-wrap">
+        <template if:true={displayLogicalOperators}>
+            <div class="slds-col slds-size_1-of-1">
+                <ul class="slds-button-group-row slds-align_absolute-center">
+                    <li class="slds-button-group-item">
+                        <button class="slds-button slds-button_neutral">AND</button>
+                    </li>
+                    <li class="slds-button-group-item">
+                        <button class="slds-button slds-button_neutral">OR</button>
+                    </li>
+                </ul>
+            </div>
+        </template>
+
+        <template for:each={filteringFieldProperties} for:item="field">
+            <div class="slds-col slds-size_6-of-12" key={field.label}>
+                <div class="slds-col">
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                  <input type="text" readonly="" placeholder="" class="slds-input" value={field.label}/>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="slds-col">
+                            <lightning-combobox
+                                    name="Operators"
+                                    value={operator}
+                                    placeholder="Select Progress"
+                                    options={field.operators}
+                                    onchange={handleChangeOperator} >
+                        </lightning-combobox>
+                        </div>
+                        <div class="slds-col">
+                            <!--<lightning-record-edit-form
+                                object-api-name={objectApiName}
+                            >
+                                <lightning-input-field field-name={field.apiName}></lightning-input-field>
+                            </lightning-record-edit-form>-->
+                            <lightning-input type="date" name="input1" label="Enter a date" ></lightning-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+     </div>
+</template>

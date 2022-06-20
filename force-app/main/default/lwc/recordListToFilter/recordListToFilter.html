@@ -1,0 +1,9 @@
+<template>
+    <c-custom-filter fields-properties={filteringFieldProperties} object-api-name={objectApiName}></c-custom-filter>
+    <lightning-datatable
+            key-field="id"
+            hide-checkbox-column="true"
+            data={data}
+            columns={columns}>
+    </lightning-datatable>
+</template>

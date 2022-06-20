@@ -1,23 +1,40 @@
-import { LightningElement, api } from 'lwc';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { LightningElement, api, wire, track } from 'lwc';
+import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import getFieldsForSobject from '@salesforce/apex/SetupFilterController.getFieldsForSobject';
 
 export default class WizardStep3 extends LightningElement {
-    @api filterId;
+    @api objectApiName;
+    objectApiInfo;
+    displayedColumns;
+    font;
+    color;
 
-    handleSuccess(event) {
-        const filId = event.detail.id;
-        this.toastEventFire('Success','New Advanced Filter Setup is Saved','success');
-        this.dispatchEvent(new CustomEvent('next', {detail: filId}));
+    displayedColumnsOptions = [];
+
+    handleDisplayedColumnsChange(event) {
+        this.displayedColumnsOptions = event.detail;
     }
 
-    toastEventFire(title,msg,variant,mode){
-        const e = new ShowToastEvent({
-            title: title,
-            message: msg,
-            variant: variant,
-            mode: mode
+    handleFontChange(event) {
+        this.font = event.target.value;
+        console.log(this.font);
+    }
+
+    handleColorChange(event) {
+        this.color = event.target.value;
+        console.log(this.color);
+    }
+
+    handleSave(event) {
+        this.displayedColumns = this.displayedColumnsOptions.join(', ');
+        let myEvent = new CustomEvent('displayinfo', { detail:
+            {
+                displayedColumns : this.displayedColumns,
+                color : this.color,
+                font : this.font
+            } 
         });
-        this.dispatchEvent(e);
-    } 
+        this.dispatchEvent(myEvent);
+    }
 
 }

@@ -1,0 +1,70 @@
+<template>
+    <div class="slds-m-around_medium">
+        <div class="initial-filters">
+            <div class="slds-grid slds-wrap">
+                <div class="search-input slds-medium-size--1-of-3 slds-small-size--1-of-1">
+            <c-lookup-object obj-name={objectApiName} custom-label="Select initial filters" multi-select="false" onvalueselected={handleInitialFiltersChange}></c-lookup-object>
+            </div>
+            </div>
+                <div class="search-input slds-medium-size--1-of-3 slds-small-size--1-of-1">
+            <lightning-input label="Select operator" onchange={handleInitialFiltersChange}></lightning-input>
+            </div>
+                <div class="search-input slds-medium-size--1-of-3 slds-small-size--1-of-1">
+            <lightning-input label="Select value" onchange={handleInitialFiltersChange}></lightning-input>
+            </div>
+        </div>
+   
+        <!-- ADDING FIELDS LOOKUP  -->
+   
+        <c-lookup-object obj-name={objectApiName} custom-label="Select Fields to filter for user" multi-select="true" onvalueselected={handleFilteringFieldsChange}></c-lookup-object>
+       
+       <!--  <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2 slds-p-right_xx-large">
+                <legend class="slds-form-element__legend slds-form-element__label">{customLabel}</legend>
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <div class="slds-combobox_container">
+                            <div id="box" class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                                <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                                    <template if:true={isValueSelected}>
+                                        <template for:each={filteringFieldsOptions} for:item="filteringFieldsOption">
+    
+                                        <div class="slds-pill-container" key={filteringFieldsOption}>
+                                            <lightning-pill class="pillSize" label={filteringFieldsOption} name={filteringFieldsOption} onremove={handleRemovePill} data-name={filteringFieldsOption} href={href}>
+                                                <lightning-icon icon-name={iconName} alternative-text="acc" ></lightning-icon>
+                                            </lightning-pill>
+                                        </div>
+                                        </template>
+                                    </template>
+                                        <div class="slds-p-top_none">
+                                            <lightning-input class={inputClass} type="search" id="input" value={searchTerm}
+                                                             onclick={handleClick} onblur={onBlur} onchange={onChange}
+                                                             variant="label-hidden" autocomplete="off" placeholder={searchPlaceholder}>
+                                            </lightning-input>
+                                        </div>
+                                </div>
+                                <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                        <template for:each={records} for:item="record">
+                                            <li key={record} onclick={onSelect} role="presentation" data-name={record}>
+                                                <span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">
+                                                    <lightning-icon class="slds-icon slds-icon--small slds-icon-text-default" icon-name={iconName} size="small"></lightning-icon>
+                                                    <span class="slds-truncate">{record}</span>
+                                                </span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div> -->
+           
+        <!-- END FIELDS LOOKUP -->
+       
+        <lightning-button label="Next" onclick={handleNext}></lightning-button>
+    </div>
+       
+</template>
